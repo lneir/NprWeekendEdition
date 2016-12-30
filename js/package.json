@@ -1,0 +1,23 @@
+{
+  "name": "NPR Weekend Edition player for Amazon Echo",
+  "version": "1.0.0",
+  "description": "An audio player for NPR's Weekend edition podcast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "audio player"
+  ],
+  "author": "Amazon.com",
+  "license": "See license in ../LICENSE.txt",
+  "dependencies": {
+    "alexa-sdk": "^1.0.4"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/lneir/NprWeekendEdition"
+  }
+}
