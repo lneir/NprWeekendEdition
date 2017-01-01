@@ -19,18 +19,19 @@ var launchRequest = function () {
 var playEdition = function(edition) {
     return function() {
         console.log('starting data fetch for ' + edition + ' edition...');
-        fetchAudioData(edition, fetchComplete.bind(this));
+        fetchAudioData(edition, fetchComplete.bind(this), fetchFailed.bind(this));
 
-        function fetchComplete(error, playOrderData) {
-            console.log('fetch complete');
-            if (error) {
-                this.response.speak(error);
-                this.emit(':responseReady');
-                return;
-            }
+        function fetchFailed(errorString) {
+            console.log('fetch failed');
+            this.response.speak(error);
+            this.emit(':responseReady');
+        }
+
+        function fetchComplete(playOrderArray) {
+            console.log('fetch success');
 
             // Initialize Attributes if undefined.
-            this.attributes['playOrder'] = playOrderData;
+            this.attributes['playOrder'] = playOrderArray;
             this.attributes['index'] = 0;
             this.attributes['offsetInMilliseconds'] = 0;
             this.attributes['loop'] = true;
@@ -48,6 +49,7 @@ var initModeHandler = {
     'LaunchRequest' : launchRequest,
     'PlaySaturday': playEdition('saturday'),
     'PlaySunday': playEdition('sunday'),
+    'PlayMorning': playEdition('morning'),
     'AMAZON.HelpIntent' : function () {
         var message = welcomeMsg;
         this.response.speak(message).listen(message);
@@ -115,6 +117,7 @@ var stateHandlers = {
         },
         'PlaySaturday' : function () { controller.play.call(this) },
         'PlaySunday' : function () { controller.play.call(this) },
+        'PlayMorning' : function () { controller.play.call(this) },
         'AMAZON.NextIntent' : function () { controller.playNext.call(this) },
         'AMAZON.PreviousIntent' : function () { controller.playPrevious.call(this) },
         'AMAZON.PauseIntent' : function () { controller.stop.call(this) },

@@ -1,5 +1,5 @@
 {
-  "name": "NPR Weekend Edition player for Amazon Echo",
+  "name": "npr-weekend-edition-skill",
   "version": "1.0.0",
   "description": "An audio player for NPR's Weekend edition podcast",
   "main": "index.js",

@@ -7,6 +7,9 @@
       "intent": "PlaySunday"
     },
     {
+      "intent": "PlayMorning"
+    },
+    {
       "intent": "AMAZON.PauseIntent"
     },
     {
